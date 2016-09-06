@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> LOGOUT </title>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<style type="text/css">
+body {
+    background-color: rgb(255, 255, 220);
+}
+</style>
+
+</head>
+<body>
+<script type="text/javascript">
+$("document").ready(function(){
+    $("#submit").click(function(event){
+      $.ajax({
+          type: "POST",
+          success: function(data){        
+            window.location.href = '/';
+                  }
+            });
+    return false;
+    });
+});
+</script>
+<br><br><br>
+ <h3> You have been successfully logged out </h3>
+  <form method="post">
+  <button id="submit" class="btn btn-info" type="submit">Click here to login back</button>
+  </form>
+
+</div>
+</body>
+</html>

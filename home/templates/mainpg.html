@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<style type="text/css">
+body {
+    background-color: rgb(204, 255, 204);
+}
+.rcornersleft {
+	background-color: white;
+    border-radius: 10px;
+    border: 1px black;
+    padding: 5px;
+    width: 250px;
+    height: 300px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.rcorners {
+	background-color: white;
+    border-radius: 10px;
+    border: 1px black;
+    padding: 20px;
+    width: 850px;
+    height: 100%;
+    margin-right: 10px;
+}
+.img {
+  width:145px;
+  height:126px;
+  margin-left: 40px;
+  margin-top: 5px;
+}
+
+.text {
+  padding: 1px 1px 1px 1px;
+  margin: -4px 1px -4px 1px;
+  word-break: break-all;
+}
+
+</style>
+{% load staticfiles %}
+<script src="{% static "js/jquery.min.js" %}"></script>
+<script src="{% static "js/mainjq.js" %}"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.15.0/lodash.js"></script>
+
+</head>
+<body>
+
+   <h2><center>Twitter</center></h2>
+   <br>
+   <br>
+   <div class="container">
+      <div class="row" >
+         <div class="col-md-4 rcornersleft">
+          <div class="container">
+            <div class ="row">
+             <img class="img" src="{% static "img/Batman.png" %}"> 
+            </div>
+            <br>
+            </div>
+            <div class ="row">
+            <div class="col-md-4"><center>Tweets</center></div>
+            <div class="col-md-4"><center>Following</center></div>
+            <div class="col-md-4"><center>Followers</center></div>
+            </div>
+            <div class ="row">
+            <div class="col-md-4" id ="count" align="center"></div>
+            <div class="col-md-4" id ="ficnt" align="center">0</div>
+            <div class="col-md-4" id ="fecnt" align="center">0</div>
+            </div>
+            <br>
+            <p style="color:green;">You are logged in as: {{ request.user.username }}</p>
+            <div class="row">
+            <div class="col-md-4">
+              <form action="users/">
+              <button id="users" class="btn btn-info" type="submit">Follow</button>
+              </form>
+            </div>
+            <div class="col-md-4">
+              <form action="logout/">
+              <button id="sublogout" class="btn btn-info" type="submit">Logout</button>
+              </form>
+            </div>
+            </div>
+         </div>
+         <div class="col-md-8 rcorners">
+         <br>
+      <form id="tweetform" method="post">
+      {% csrf_token %}
+			<div class="input-group">
+      <input type="text" class="form-control" id="tweetxt" placeholder="What do you want to tweet about today?">
+  			<div class="input-group-btn">
+    		<button id = "submit" class="btn btn-info" type="submit">Tweet</button>
+  			</div>
+			</div>
+      </form>
+			<br>
+         <div class="encl"> 
+         </div>
+        </div>
+      </div><!-- end nested row -->
+   </div> 
+</body>
+</html>
