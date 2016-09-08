@@ -3,44 +3,8 @@
 <head>
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-<style type="text/css">
-body {
-    background-color: rgb(204, 255, 204);
-}
-.rcornersleft {
-	background-color: white;
-    border-radius: 10px;
-    border: 1px black;
-    padding: 5px;
-    width: 250px;
-    height: 300px;
-    margin-right: 10px;
-    margin-left: 10px;
-}
-.rcorners {
-	background-color: white;
-    border-radius: 10px;
-    border: 1px black;
-    padding: 20px;
-    width: 850px;
-    height: 100%;
-    margin-right: 10px;
-}
-.img {
-  width:145px;
-  height:126px;
-  margin-left: 40px;
-  margin-top: 5px;
-}
-
-.text {
-  padding: 1px 1px 1px 1px;
-  margin: -4px 1px -4px 1px;
-  word-break: break-all;
-}
-
-</style>
 {% load staticfiles %}
+<link rel="stylesheet" href="{% static "css/main.css" %}">
 <script src="{% static "js/jquery.min.js" %}"></script>
 <script src="{% static "js/mainjq.js" %}"></script>
 
@@ -49,9 +13,10 @@ body {
 </head>
 <body>
 
-   <h2><center>Twitter</center></h2>
+   <div class="title"><h3>Follow Me</h3></div>
    <br>
    <br>
+   <div class="workarea">
    <div class="container">
       <div class="row" >
          <div class="col-md-4 rcornersleft">
@@ -72,14 +37,14 @@ body {
             <div class="col-md-4" id ="fecnt" align="center">0</div>
             </div>
             <br>
-            <p style="color:green;">You are logged in as: {{ request.user.username }}</p>
+            <p class="al">You are logged in as: {{ request.user.username }}</p>
             <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4 al">
               <form action="users/">
               <button id="users" class="btn btn-info" type="submit">Follow</button>
               </form>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 al">
               <form action="logout/">
               <button id="sublogout" class="btn btn-info" type="submit">Logout</button>
               </form>
@@ -103,6 +68,7 @@ body {
         </div>
       </div><!-- end nested row -->
    </div> 
+   </div>
 
 <!-- google analytics -->
 <script>

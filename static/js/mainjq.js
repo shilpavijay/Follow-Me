@@ -32,6 +32,7 @@ function stat() {
 }
 
 
+
 $("document").ready(function(){
   reloadpg();
   stat();
