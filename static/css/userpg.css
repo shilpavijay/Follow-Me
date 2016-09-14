@@ -24,25 +24,39 @@ h3 {
     border-radius: 10px;
     border: 1px black;
     padding: 5px;
-    width: 260px;
+    width: 21%;
     height: 260px;
-    margin-right: 45px;
-    margin-left: -35px;
+    margin-right: 2.5%;
+    margin-left: -5%;
     margin-top: 10px;
 }
+
+.rcornersright {
+  background-color: white;
+    border-radius: 10px;
+    border: 1px black;
+    /*padding: 5px;*/
+    width: 24%;
+    /*height: 260px;*/
+    height: 100%;
+    margin-right: -24%;
+    margin-left: 0.1%;
+    margin-top: 10px;
+}
+
 .rcorners {
 	background-color: white;
     border-radius: 10px;
     border: 1px black;
     padding: 20px;
-    width: 870px;
+    width: 63%;
     height: 100%;
     margin-right: 10px;
     margin-top: 10px;
 }
 .img {
-  width:145px;
-  height:126px;
+  width:140px;
+  height:110px;
   margin-left: 40px;
   margin-top: 5px;
 }
@@ -56,4 +70,13 @@ h3 {
 .al {
   margin-left: 30%;
   font-size: 24px;
+}
+
+.followbuttons {
+  margin-left: 40px;
+}
+
+.btn {
+  border-radius: 11px;
+  width: 50%;
 }

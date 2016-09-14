@@ -3,12 +3,11 @@ function reloadpg() {
   var create = _.template('<div class="well" id="<%= x %>"></div>');
   var tw = _.template('<p class="text"> <%= a %> </p>');
 
-  $.get("/getweets/",function(data){
+  $.get("/selfweets/",function(data){
     json = $.parseJSON(data);
 
     for(i=0;i<json.length;i++){
-      var tweet=json[i].fields.tweet_text;
-      console.log(tweet);    
+      var tweet=json[i].fields.tweet_text; 
       $(".encl").append(create({ 'x': i }));
       $('#'+i).append(tw({ 'a': tweet }));
     }
@@ -31,34 +30,23 @@ function stat() {
   return true;
 }
 
+function fol_users() {
+  $.get("/folusers/",function(data){
+    json = $.parseJSON(data);
+    for(i=0;i<json.length;i++){
+      var names = '@' + json[i].fields.username 
+      var newb = _.template('<button class="btn btn-primary" type="submit" id="<%= id %>"> <%= name %> </button><br/><br/>');
+      $(".followbuttons").append(newb({ 'id': i, 'name': names}));
+    }
+  });  
+  return true;
+}
 
 
 $("document").ready(function(){
   reloadpg();
   stat();
-  $("#submit").click(function(event){
-    if($(".form-control").val().length===0){
-      event.preventDefault();
-    }
-    else {
-    $.ajax({
-        type: "POST",
-        url: "fe_tw/",
-        data: 
-        { 
-          tweetxt : $("#tweetxt").val()
-        },
-        success: function(data){ 
-          $(".encl").empty();     
-          $("#tweetxt").val('');
-          reloadpg();
-          stat();
-                }
-          });
-  }
-  return false;
-  });  
-
+  fol_users();
   $("#sublogout").click(function(event){
     $.ajax({
         type: "POST",

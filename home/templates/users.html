@@ -9,7 +9,7 @@
 <script type="text/javascript">
 
 function fol_users() {
-  $.get("folusers/",function(data){
+  $.get("/folusers/",function(data){
     json = $.parseJSON(data);
     for(i=0;i<json.length;++i){
       var newb = document.createElement("button");

@@ -40,10 +40,26 @@ def user_api(request,tablename):
 		serializers.serialize('json',tabledata))
 
 def get_tweets(request):
+	rel_tweets={}
+	cur_user = request.user
+	foll_list=base.objects.filter(username=cur_user,followers='NA') 
+	usrtweets=tweet.objects.all()
+	self_tweets=tweet.objects.filter(username=cur_user)
+
+	for tw in usrtweets:
+		if not foll_list:
+			rel_tweets=self_tweets
+		else:
+			for fol in foll_list:
+				if tw.username == fol.username or tw.username == cur_user:
+					rel_tweets[tw.username]=tw.tweet_text
+	return HttpResponse(serializers.serialize('json',rel_tweets))
+	
+def self_tweets(request):
 	cur_user = request.user
 	usrtweets=tweet.objects.filter(username=cur_user)
 	return HttpResponse(serializers.serialize('json',usrtweets))
-	
+
 def stats(request):
 	resp_data={}
 	cur_user = request.user
@@ -93,11 +109,16 @@ def foll_users(request):
 	temp={}
 	usernm = request.user.username
 	cur_user = request.user
-	foll_list=base.objects.filter(username=cur_user,followers='NA')
+	foll_list=base.objects.filter(username=cur_user,followers='NA')  #get all followers of cur user
 	for d in User.objects.all():    #get only those users whom current user doesnt follow. 
-		for u in foll_list:
-			if d.username != usernm and d.username != u.following: #Also omit self.
+		if foll_list:
+			for u in foll_list:
+				if d.username != usernm and d.username != u.following: #Also omit self.
+					temp[d] = d.username
+		else:
+			if d.username != usernm:
 				temp[d] = d.username
+	print temp
 	return HttpResponse(serializers.serialize('json',temp))
 
 @csrf_exempt
@@ -106,3 +127,8 @@ def logout_view(request):
 	if request.method == 'POST':
 		return render(request,'login.html')
 	return render(request,'logout.html')
+
+@login_required
+def userpg(request,userid):
+	print userid
+	return render(request,'userpg.html');	
