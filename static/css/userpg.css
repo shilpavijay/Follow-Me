@@ -1,6 +1,7 @@
 .workarea {
     /*background-color: #eeedf0;*/
     background: linear-gradient(to left bottom, white, #1b95e0) fixed;
+    height: 605px;
     /*#1b95e0; 91d2fa daf0fd*/
 }
 
@@ -79,4 +80,10 @@ h3 {
 .btn {
   border-radius: 11px;
   width: 50%;
+}
+
+.lgout {
+  margin-top: 2px;
+  margin-bottom: -15px;
+  margin-left: 91.5%;
 }

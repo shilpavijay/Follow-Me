@@ -4,9 +4,9 @@
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
 {% load staticfiles %}
-<link rel="stylesheet" href="{% static "css/userpg.css" %}">
+<link rel="stylesheet" href="{% static "css/main.css" %}">
 <script src="{% static "js/jquery.min.js" %}"></script>
-<script src="{% static "js/userpgjq.js" %}"></script>
+<script src="{% static "js/folljq.js" %}"></script>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.15.0/lodash.js"></script>
 
@@ -27,16 +27,12 @@
           <div class="container">
             <div class ="row">
              <img class="img" src="{% static "img/Batman.png" %}"> 
-             <br><a>Upload a pic</a>
             </div>
             <br>
-
             </div>
-
             <a class="al" href="#">{{ request.user.username }}</a>
- 
             <div class ="row">
-            <a class="tweetlist" href="#"><div class="col-md-4"><center>Tweets</center></div></a>
+             <a class="tweetlist" href="#"><div class="col-md-4"><center>Tweets</center></div></a>
             <a class="finglist" href="/following/"><div class="col-md-4"><center>Following</center></div></a>
             <a class="ferslist" href="/followers/"><div class="col-md-4"><center>Followers</center></div></a>
             </div>
@@ -46,39 +42,19 @@
             <a class="ferslist" href="/followers/"><div class="col-md-4" id ="fecnt" align="center">0</div></a>
             </div>
             <br>
-            
-            <!-- <div class="row">
-            <div class="col-md-4 al">
-              <form action="users/">
-              <button id="users" class="btn btn-info" type="submit">Follow</button>
-              </form>
-            </div>
-            <div class="col-md-4 al">
-              <form action="logout/">
-              <button id="sublogout" class="btn btn-info" type="submit">Logout</button>
-              </form>
-            </div>
-            </div> -->
+          
          </div>
-         <div class="col-md-5 rcorners">
-            <h4 align="center">Your tweets</h4>
-             <br>
-    			   <br>
-             <div class="encl"> 
-             </div>
-        </div>
+         <div class="col-md-8">
 
-        <div class="col-md-3 rcornersright">
-            <h5 align="left">Who to follow:</h5>
-            {% csrf_token %}
-            <form class = "followbuttons" method="post"></form>
-        </div>
+         <div class="flist">
+         </div>
 
+         <br>  
+  			<br>
+        </div>
       </div><!-- end nested row -->
    </div> 
    </div>
-
-<!-- google analytics -->
 
 </body>
 </html>

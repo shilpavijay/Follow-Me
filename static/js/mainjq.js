@@ -1,17 +1,23 @@
 function reloadpg() {
 
   var create = _.template('<div class="well" id="<%= x %>"></div>');
-  var tw = _.template('<p class="text"> <%= a %> </p>');
+  var tw = _.template('<p class="text"> <p class="twname">@<%= name %> . <span id="dt"> <%= dt %> </span></p><%= tw %> </p>');
 
   $.get("/getweets/",function(data){
     json = $.parseJSON(data);
+    var i = 0
+    $.each(json, function(username,field){     
+      $.each(field,function(tweet,date){    
+        $(".encl").append(create({ 'x': i }));
+        $('#'+i).append(tw({ 'name': username, 'dt':date, 'tw': tweet }));
+        ++i;       
+     });
+    });
 
-    for(i=0;i<json.length;i++){
-      var tweet=json[i].fields.tweet_text;
-      console.log(tweet);    
-      $(".encl").append(create({ 'x': i }));
-      $('#'+i).append(tw({ 'a': tweet }));
-    }
+      // var tweet=json[i].fields.tweet_text;
+      // console.log(tweet);    
+      // $(".encl").append(create({ 'x': i }));
+      // $('#'+i).append(tw({ 'a': tweet }));
   });
   return true;
 }  
@@ -62,7 +68,7 @@ $("document").ready(function(){
   $("#sublogout").click(function(event){
     $.ajax({
         type: "POST",
-        url: 'logout/',
+        url: '/logout/',
         success: function(data){ 
         window.location.href = '/';
                 }

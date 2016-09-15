@@ -1,6 +1,14 @@
+body {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 100%;
+} 
+
+
 .workarea {
     /*background-color: #eeedf0;*/
     background: linear-gradient(to left bottom, white, #1b95e0) fixed;
+    height: 605px;
     /*#1b95e0; 91d2fa daf0fd*/
 }
 
@@ -40,6 +48,24 @@ h3 {
     margin-right: 10px;
     margin-top: 10px;
 }
+
+.rcornersusr {
+  background-color: white;
+    border-radius: 10px;
+    border: 1px black;
+    padding: 5px;
+    width: 200px;
+    height: 200px;
+    margin-right: 0px;
+    margin-left: 0px;
+    margin-top: 10px;
+}
+
+.flist {
+  width: 200px;
+    height: 200px;
+}
+
 .img {
   width:145px;
   height:126px;
@@ -56,4 +82,19 @@ h3 {
 .al {
   margin-left: 30%;
   font-size: 24px;
+}
+
+.twname {
+  font-size: 10px;
+  font-style: italic;
+}
+
+.dt {
+  align-items: right;
+}
+
+.lgout {
+  margin-top: 2px;
+  margin-bottom: -15px;
+  margin-left: 91.5%;
 }

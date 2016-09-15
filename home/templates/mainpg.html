@@ -13,8 +13,12 @@
 </head>
 <body>
 
-   <div class="title"><h3>Follow Me</h3></div>
-   <br>
+   <a href="/main/"><div class="title"><h3>Follow Me</h3></div></a>
+   <div class="lgout"><span>
+      <form action="logout/">
+      <button id="sublogout" class="btn btn-info" type="submit">Logout</button>
+      </form></span>
+  </div>
    <br>
    <div class="workarea">
    <div class="container">
@@ -28,14 +32,14 @@
             </div>
             <a class="al" href="{{ request.user.id }}/">@{{ request.user.username }}</a>
             <div class ="row">
-            <div class="col-md-4"><center>Tweets</center></div>
-            <div class="col-md-4"><center>Following</center></div>
-            <div class="col-md-4"><center>Followers</center></div>
+            <a class="tweetlist" href="#"><div class="col-md-4"><center>Tweets</center></div></a>
+            <a class="finglist" href="following/"><div class="col-md-4"><center>Following</center></div></a>
+            <a class="ferslist" href="followers/"><div class="col-md-4"><center>Followers</center></div></a>
             </div>
             <div class ="row">
-            <div class="col-md-4" id ="count" align="center"></div>
-            <div class="col-md-4" id ="ficnt" align="center">0</div>
-            <div class="col-md-4" id ="fecnt" align="center">0</div>
+            <a class="tweetlist" href="#"><div class="col-md-4" id ="count" align="center"></div></a>
+            <a class="finglist" href="following/"><div class="col-md-4" id ="ficnt" align="center">0</div></a>
+            <a class="ferslist" href="followers/"><div class="col-md-4" id ="fecnt" align="center">0</div></a>
             </div>
             <br>
             

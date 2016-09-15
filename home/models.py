@@ -9,7 +9,7 @@ class tweet(models.Model):
 	post_date = models.DateTimeField('date published')
 
 	def __str__(self):
-		return self.tweet_text
+		return "%s %s %s" % (self.tweet_text,self.username,self.post_date)
 
 class base(models.Model):
 	username = models.ForeignKey(User,on_delete=models.CASCADE) 
