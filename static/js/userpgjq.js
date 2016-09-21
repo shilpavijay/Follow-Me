@@ -52,9 +52,9 @@ function fol_users() {
 
 function followbutton() {
   $(".followbuttons").on("click", ".btn", function(){
-    name = $(this).val();
-    name = name.trimLeft().trimRight().slice(1);
-
+    var name = $(this).val();
+    name = name.trimLeft().trimRight();
+    $(this).text('Following');
     $.ajax({
         type: "POST",
         url: "/users/",
@@ -62,14 +62,14 @@ function followbutton() {
         { 
           selection : name
         },
-        success: function(data){ 
-          // $(".followbuttons").empty();     
-              // location.reload();
-              location.href = location.href;
+        error: function(data){ 
+            console.log('success');        
                 }
-          });
+          });  
+  // $(document.body).html();
   return false;
   }); 
+
 }
 
 
@@ -84,7 +84,8 @@ $("document").ready(function(){
   reloadpg();
   stat();
   fol_users();
-  setTimeout(followbutton,5);
+  setTimeout(followbutton,1);
+
   $("#sublogout").click(function(event){
     $.ajax({
         type: "POST",

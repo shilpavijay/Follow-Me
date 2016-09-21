@@ -2,7 +2,7 @@ function following() {
   var username = window.location.href;
   username = username.split('/')[4];
 
-  var create = _.template('<span><p class="rcornersusr" id="<%= x %>"></p></span>');
+  var create = _.template('<p class="rcornersusr" id="<%= x %>"></p>');
   var tw = _.template('<div class="userbox"></div><a href="/main/<%= a %>/"><p class="folusertext"> <%= a %> </p></a>');
 
   $.get("/fing/"+username+'/',function(data){
@@ -56,7 +56,9 @@ $("document").ready(function(){
   var username = window.location.href;
   username = username.split('/')[4];
   $("#mainnm").text(username);
+  $("#mainnm").attr("href","/main/"+username+"/");
   
+  $(".tweetlist").attr("href","/main/"+username+"/");
   $(".finglist").attr("href","/main/"+username+"/following/");
   $(".ferslist").attr("href","/main/"+username+"/followers/");
 
