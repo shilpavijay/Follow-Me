@@ -1,25 +1,30 @@
 function reloadpg() {
-
+  var username = window.location.href;
+  username = username.split('/')[4];
   var create = _.template('<div class="well" id="<%= x %>"></div>');
-  var tw = _.template('<p class="text"> <%= a %> </p>');
+  var tw = _.template('<p class="text"> <p class="twname">@<%= name %> . <span id="dt"> <%= dt %> </span></p><%= a %> </p>');
 
-  $.get("/selftweets/",function(data){
+  $.get("/tweets/"+username+"/",function(data){
     json = $.parseJSON(data);
 
     for(i=0;i<json.length;i++){
+      var name = username;
       var tweet=json[i].fields.tweet_text; 
-      console.log(tweet);
+      var date = json[i].fields.post_date;
+      date = date.slice(0,19).split('T')[0] + ' '+ date.slice(0,19).split('T')[1]
       $(".encl").append(create({ 'x': i }));
-      $('#'+i).append(tw({ 'a': tweet }));
+      $('#'+i).append(tw({ 'name': name, 'dt':date, 'a': tweet }));
     }
   });
-  return true;
+  return true;  
 }  
  
 
 
 function stat() {
-  $.get("/stats/",function(data){
+  var username = window.location.href;
+  username = username.split('/')[4];
+  $.get("/stats/"+username+'/',function(data){
     json = $.parseJSON(data);
     cnt=json.count;
     following=json.following;
@@ -32,11 +37,13 @@ function stat() {
 }
 
 function fol_users() {
-  $.get("/folusers/",function(data){
+  var username = window.location.href;
+  username = username.split('/')[4];
+  $.get("/folusers/"+username+"/",function(data){
     json = $.parseJSON(data);
     for(i=0;i<json.length;i++){
-      var names = '@' + json[i]
-      var newb = _.template('<button class="btn btn-primary" type="submit" id="<%= id %>"> <%= name %> </button><br/><br/>');
+      var names = json[i]
+      var newb = _.template('<br/><a id ="who" href="/main/<%= name%>/">@<%= name%></a><br/><button class="btn fol btn-primary" type="submit" value="<%= name%>" id="<%= id %>">+ Follow</button><br/>');
       $(".followbuttons").append(newb({ 'id': i, 'name': names}));
     }
   });  
@@ -45,8 +52,9 @@ function fol_users() {
 
 function followbutton() {
   $(".followbuttons").on("click", ".btn", function(){
-    name = $(this).text();
+    name = $(this).val();
     name = name.trimLeft().trimRight().slice(1);
+
     $.ajax({
         type: "POST",
         url: "/users/",
@@ -66,6 +74,13 @@ function followbutton() {
 
 
 $("document").ready(function(){
+  var username = window.location.href;
+  username = username.split('/')[4];
+  $("#mainnm").text(username);
+  if (pageuser != username) {
+    $("#whotofollow").attr("hidden",true);
+  }
+
   reloadpg();
   stat();
   fol_users();

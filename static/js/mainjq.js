@@ -1,23 +1,18 @@
 function reloadpg() {
 
   var create = _.template('<div class="well" id="<%= x %>"></div>');
-  var tw = _.template('<p class="text"> <p class="twname">@<%= name %> . <span id="dt"> <%= dt %> </span></p><%= tw %> </p>');
+  var tw = _.template('<p class="text"> <p class="twname"><a href="<%= usr %>">@<%= name %></a> . <span id="dt"> <%= dt %> </span></p><%= tw %> </p>');
 
   $.get("/getweets/",function(data){
     json = $.parseJSON(data);
     var i = 0
-    $.each(json, function(username,field){     
-      $.each(field,function(tweet,date){    
+    $.each(json, function(date,field){     
+      $.each(field,function(tweet,username){    
         $(".encl").append(create({ 'x': i }));
-        $('#'+i).append(tw({ 'name': username, 'dt':date, 'tw': tweet }));
+        $('#'+i).append(tw({ 'name': username, 'usr': username+'/', 'dt':date, 'tw': tweet }));
         ++i;       
      });
     });
-
-      // var tweet=json[i].fields.tweet_text;
-      // console.log(tweet);    
-      // $(".encl").append(create({ 'x': i }));
-      // $('#'+i).append(tw({ 'a': tweet }));
   });
   return true;
 }  
@@ -49,7 +44,7 @@ $("document").ready(function(){
     else {
     $.ajax({
         type: "POST",
-        url: "fe_tw/",
+        url: "/fe_tw/",
         data: 
         { 
           tweetxt : $("#tweetxt").val()

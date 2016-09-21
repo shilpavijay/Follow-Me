@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <title> User page </title>
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
 {% load staticfiles %}
@@ -9,7 +10,10 @@
 <script src="{% static "js/userpgjq.js" %}"></script>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.15.0/lodash.js"></script>
-
+<script type="text/javascript">
+  var pageuser = "{{ request.user.username }}";
+</script>
+ 
 </head>
 <body>
 
@@ -33,18 +37,18 @@
 
             </div>
 
-            <a class="al" href="#">{{ request.user.username }}</a>
+            <a id="mainnm" class="al" href="#"></a>
  
             <div class ="row">
             <a class="tweetlist" href="#"><div class="col-md-4"><center>Tweets</center></div></a>
-            <a class="finglist" href="/following/"><div class="col-md-4"><center>Following</center></div></a>
-            <a class="ferslist" href="/followers/"><div class="col-md-4"><center>Followers</center></div></a>
+            <a class="finglist" href="following/"><div class="col-md-4"><center>Following</center></div></a>
+            <a class="ferslist" href="followers/"><div class="col-md-4"><center>Followers</center></div></a>
             </div>
             <div class ="row">
             <a class="tweetlist" href="#"><div class="col-md-4" id ="count" align="center"></div></a>
-            <a class="finglist" href="/following/"><div class="col-md-4" id ="ficnt" align="center">0</div></a>
-            <a class="ferslist" href="/followers/"><div class="col-md-4" id ="fecnt" align="center">0</div></a>
-            </div>
+            <a class="finglist" href="following/"><div class="col-md-4" id ="ficnt" align="center">0</div></a>
+            <a class="ferslist" href="followers/"><div class="col-md-4" id ="fecnt" align="center">0</div></a>
+            </div> 
             <br>
             
             <!-- <div class="row">
@@ -67,8 +71,9 @@
              <div class="encl"> 
              </div>
         </div>
+      
 
-        <div class="col-md-3 rcornersright">
+        <div id="whotofollow" class="col-md-3 rcornersright">
             <h5 align="left">Who to follow:</h5>
             {% csrf_token %}
             <form class = "followbuttons" method="post"></form>
