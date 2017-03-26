@@ -1,2 +1,2 @@
 # Follow-Me
-A twitter Clone using Django, JQuery and AJAX
+A twitter Clone built in Django, JQuery and AJAX
