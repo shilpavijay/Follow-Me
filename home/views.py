@@ -51,26 +51,7 @@ class OrderedDefaultDict(OrderedDict):
         val = self[key] = self.default_factory()
         return val
 
-# def get_tweets(request):
-# 	rel_tweets=OrderedDefaultDict(OrderedDict)
-# 	cur_user = request.user
-# 	foll_list=base.objects.filter(username=cur_user,followers='NA') 
-# 	usrtweets=tweet.objects.order_by('-post_date')
-# 	self_tweets=tweet.objects.filter(username=cur_user).order_by('-post_date')
-# 	if not foll_list:
-# 		for tw in self_tweets:
-# 			rel_tweets[cur_user.username].update({tw.tweet_text:tw.post_date.strftime('%d-%m-%Y %H:%M')})
-# 		# return HttpResponse(serializers.serialize('json',rel_tweets))
-# 	else:
-# 		for fol in foll_list:		
-# 			user = User.objects.filter(username=fol.following)		
-# 			if tweet.objects.filter(username=user):
-# 				for tw in usrtweets:	
-# 					if tw.username.username == fol.following or tw.username == cur_user:	
-# 						nm = tw.username.username				
-# 						rel_tweets[nm].update({tw.tweet_text:tw.post_date.strftime('%d-%m-%Y %H:%M')})
-# 	return HttpResponse(json.dumps(OrderedDict(rel_tweets.items())))
-	
+
 def get_tweets(request):
 	rel_tweets=OrderedDefaultDict(OrderedDict)
 	cur_user = request.user
